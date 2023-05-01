@@ -18,6 +18,10 @@ jobs:
         with:
           terraform_version: ${{ github.events.inputs.tf_version || 'latest' }}
 
+      - name: Terraform Init
+        id: init
+        run: terraform init
+
       - name: Terraform Format
         id: fmt
         run: terraform fmt --check
