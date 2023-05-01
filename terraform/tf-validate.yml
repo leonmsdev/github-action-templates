@@ -1,6 +1,7 @@
 name: "tf_validate"
 on:
-  workflow_call:
+  pull_request:
+    types: [opened, reopened]
     inputs:
       tf_version:
         description: 'Specifies version of Terraform to use. e.g: 1.1.0 Default=latest.'
