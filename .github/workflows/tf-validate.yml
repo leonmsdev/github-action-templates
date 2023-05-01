@@ -1,13 +1,6 @@
 name: "tf_validate"
 on:
-  pull_request:
-    types: [opened, reopened]
-    inputs:
-      tf_version:
-        description: 'Specifies version of Terraform to use. e.g: 1.1.0 Default=latest.'
-        required: false
-        type: string
-        default: latest
+  workflow_call:
 
 jobs:
   build-plan:
@@ -23,7 +16,7 @@ jobs:
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v2.0.3
         with:
-          terraform_version: ${{ inputs.tf_version }}
+          terraform_version: ${{ github.events.inputs.tf_version || 'latest' }}
 
       - name: Terraform Format
         id: fmt
